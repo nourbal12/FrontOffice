@@ -1,0 +1,71 @@
+<button class="btn btn-danger" (click)="logOut()">Log Out</button>
+<button class="btn btn-success m-4 mt-4" (click)="redirectToAddBlog()"><i class="fa-solid fa-plus"></i> Add</button>
+<div class="center input-group rounded">
+
+    <input  class="form-control"
+    placeholder="Search..."
+    [ngModel]="searchTerm"
+    (input)="search($any($event.target).value)" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"  />
+    <span class="input-group-text border-0"  id="search-addon">
+      <i class="fas fa-search"></i>
+    </span>
+  </div>
+<div *ngFor="let blog of blogs" class="blog py-5" style="background-color: rgb(204, 223, 247) ;">
+    <div class="container">
+      <div class="row">
+        <div class="cl col-md-8 mx-auto px-0 bg-white shadow-sm rounded">
+          <div class="col-lg-7 col-md-12 float-md-left">
+            <div class="p-3 p-sm-5">
+              <div class="mb-4">
+                <h3 class="mb-4">
+                  {{blog.title}}
+                </h3>
+                <footer class="blockquote-footer">By <cite title="Source title">{{blog.author}}</cite></footer>
+                <p class="mb-0 mt-4">
+                  {{blog.content}} ...
+                </p>
+              </div>
+                <button (click)="redirectToBlogDetail(blog.id)" class="btn btn-info">Learn More</button>    
+            </div>
+            <div >
+              <div class="popup" >
+                <div class="popuptext" [id]="'myPopup'+blog.id">
+                    <p *ngFor="let name of userNames">
+                      {{name}}
+                    </p>
+                  </div>
+                </div>
+                <div *ngIf="blog.authorId != user.id">
+                  <i class="fas fa-thumbs-up mb-3 mr-3"  (mouseenter)="getUsersByEval(blog.id,1)" (mouseleave)="deleteArray()" (click)="vote(blog,1)"> {{blog.upvote}}</i>
+                  <i class="fas fa-thumbs-down mb-3" (mouseenter)="getUsersByEval(blog.id,0)" (mouseleave)="deleteArray()" (click)="vote(blog,0)"> {{blog.downvote}}</i></div>
+                </div>
+            
+        </div>
+        </div>
+        <div style="width: 400px; margin: 50px auto">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [style.max-width]="blog.upvote/(blog.upvote+blog.downvote)*100+ '%'">
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="login" class="login modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>You have to login first</h2>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" (click)="redirectToLogin()" >Login</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+

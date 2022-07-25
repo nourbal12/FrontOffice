@@ -1,0 +1,24 @@
+<button (click)="redirectToBlogList()" class="btn btn-secondary m-4"><i class="fa-solid fa-list"></i> All blogs</button>
+<div class="card centerBlog mt-4" style="background-color: rgb(204, 223, 247) ;">
+    <h1 *ngIf="blog.title" class="centerBlog m-4">{{blog.title}}</h1>
+    <p *ngIf="blog.content" class="m-4">
+        {{blog.content}}
+    </p>
+
+    <span *ngIf="blog.author" class="mt-4">By {{blog.author}}</span>
+</div>  
+<div class="card centerBlog mt-4 mb-4" *ngIf="user.id!=blog.authorId" style="background-color: rgb(159, 247, 234) ;">
+    <i class="fas fa-thumbs-up mb-3 mr-3 mt-3" (click)="upvote()"> {{blog.upvote}}</i>
+    <i class="fas fa-thumbs-down mb-3 " (click)="downvote()"> {{blog.downvote}}</i>
+</div>
+
+<div class="card centerBlog mt-4" *ngIf="user.id==blog.authorId" style="background-color: rgb(204, 223, 247) ;">
+    <button class="btn btn-primary m-4" (click)="onUpdate()"><i class="fa-solid fa-pen-to-square" ></i> Edit</button>
+    <button style="float: right;" class="btn btn-danger m-4" (click)="onDelete()"><i class="fa-solid fa-trash "></i> Delete</button>
+</div>
+
+<div class="modal-update-blog" class="modal-update-blog modal fade">
+    <div class="modal-content">
+            <app-add-blog [update]="true" [blog]="blog"></app-add-blog>
+    </div>
+</div>
