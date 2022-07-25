@@ -36,8 +36,8 @@
                   </div>
                 </div>
                 <div *ngIf="blog.authorId != user.id">
-                  <i class="fas fa-thumbs-up mb-3 mr-3"  (mouseenter)="getUsersByEval(blog.id,1)" (mouseleave)="deleteArray()" (click)="vote(blog,1)"> {{blog.upvote}}</i>
-                  <i class="fas fa-thumbs-down mb-3" (mouseenter)="getUsersByEval(blog.id,0)" (mouseleave)="deleteArray()" (click)="vote(blog,0)"> {{blog.downvote}}</i></div>
+                  <i class="fas fa-thumbs-up mb-3 mr-3"  (mouseenter)="getUsersByEval(blog.id,1)" (mouseleave)="deleteArray(blog.id)" (click)="vote(blog,1)"> {{blog.upvote}}</i>
+                  <i class="fas fa-thumbs-down mb-3" (mouseenter)="getUsersByEval(blog.id,0)" (mouseleave)="deleteArray(blog.id)" (click)="vote(blog,0)"> {{blog.downvote}}</i></div>
                 </div>
             
         </div>

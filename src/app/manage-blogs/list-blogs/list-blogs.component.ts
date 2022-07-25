@@ -114,9 +114,9 @@ export class ListBlogsComponent implements OnInit {
     }
   }
 
-  deleteArray() {
+  deleteArray(id) {
     this.userNames = [];
-    var popup = document.getElementById("myPopup");
+    var popup = document.getElementById("myPopup"+id);
       popup.classList.toggle("hide");
   }
 

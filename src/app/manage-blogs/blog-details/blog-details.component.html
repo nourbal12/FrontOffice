@@ -7,9 +7,17 @@
 
     <span *ngIf="blog.author" class="mt-4">By {{blog.author}}</span>
 </div>  
+
 <div class="card centerBlog mt-4 mb-4" *ngIf="user.id!=blog.authorId" style="background-color: rgb(159, 247, 234) ;">
-    <i class="fas fa-thumbs-up mb-3 mr-3 mt-3" (click)="upvote()"> {{blog.upvote}}</i>
-    <i class="fas fa-thumbs-down mb-3 " (click)="downvote()"> {{blog.downvote}}</i>
+    <div class="popup" >
+        <div class="popuptext" [id]="'myPopup'+blog.id">
+            <p *ngFor="let name of userNames">
+              {{name}}
+            </p>
+          </div>
+        </div>
+    <i class="fas fa-thumbs-up mb-3 mr-3"  (mouseenter)="getUsersByEval(blog.id,1)" (mouseleave)="deleteArray(blog.id)" (click)="vote(blog,1)"> {{blog.upvote}}</i>
+    <i class="fas fa-thumbs-down mb-3" (mouseenter)="getUsersByEval(blog.id,0)" (mouseleave)="deleteArray(blog.id)" (click)="vote(blog,0)"> {{blog.downvote}}</i>
 </div>
 
 <div class="card centerBlog mt-4" *ngIf="user.id==blog.authorId" style="background-color: rgb(204, 223, 247) ;">
